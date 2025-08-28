@@ -1,57 +1,37 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Github, Mail, ArrowRight } from 'lucide-react';
 
-// Spline model URL provided by the user
 const SPLINE_URL = 'https://prod.spline.design/S4k-6fqjuV5AuVZe/scene.splinecode';
 
 export default function Hero() {
-  const containerRef = useRef(null);
-  const [viewerReady, setViewerReady] = useState(false);
-
   useEffect(() => {
-    // Dynamically load the Spline viewer script once
     const scriptId = 'spline-viewer-script';
-    const existing = document.getElementById(scriptId);
-
-    const ensureViewer = () => setViewerReady(true);
-
-    if (existing) {
-      // Script already present
-      ensureViewer();
-      return;
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'module';
+      script.src = 'https://unpkg.com/@splinetool/viewer@1.9.65/build/spline-viewer.js';
+      document.head.appendChild(script);
     }
-
-    const script = document.createElement('script');
-    script.id = scriptId;
-    script.type = 'module';
-    script.src = 'https://unpkg.com/@splinetool/viewer@1.9.65/build/spline-viewer.js';
-    script.onload = ensureViewer;
-    document.head.appendChild(script);
-
-    return () => {
-      // keep the script for navigation performance
-    };
   }, []);
 
   return (
     <div className="relative min-h-[92vh] w-full overflow-hidden">
       {/* 3D Background */}
-      <div className="absolute inset-0 -z-10">
-        {viewerReady && (
-          <spline-viewer
-            style={{ width: '100%', height: '100%' }}
-            loading-anim
-            events-target="global"
-            url={SPLINE_URL}
-          />
-        )}
-        {/* Dark vignette/overlay to match the model aesthetics and ensure contrast */}
-        <div className="pointer-events-none absolute inset-0 bg-neutral-950/50" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_40%,#0a0a0a_100%)]" />
+      <div className="absolute inset-0 z-0">
+        <spline-viewer
+          style={{ width: '100%', height: '100%', display: 'block' }}
+          loading-anim
+          events-target="global"
+          url={SPLINE_URL}
+        />
+        {/* Subtle overlays for readability, without hiding the model */}
+        <div className="pointer-events-none absolute inset-0 bg-black/30" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_55%,#050505_100%)]" />
       </div>
 
       {/* Content */}
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-8 px-4 pb-24 pt-32 sm:px-6 lg:px-8 lg:pt-40">
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col gap-8 px-4 pb-24 pt-32 sm:px-6 lg:px-8 lg:pt-40">
         <div className="inline-flex w-fit items-center gap-2 rounded-full border border-neutral-800 bg-black/40 px-3 py-1 text-xs text-neutral-300 shadow">
           <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
           Available for freelance work
