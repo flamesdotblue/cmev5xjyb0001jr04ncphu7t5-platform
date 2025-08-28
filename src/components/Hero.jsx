@@ -25,24 +25,24 @@ export default function Hero() {
           events-target="global"
           url={SPLINE_URL}
         />
-        {/* Subtle overlays for readability, without hiding the model */}
+        {/* Subtle overlays for readability */}
         <div className="pointer-events-none absolute inset-0 bg-black/30" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_55%,#050505_100%)]" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col gap-8 px-4 pb-24 pt-32 sm:px-6 lg:px-8 lg:pt-40">
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col gap-6 px-4 pb-24 pt-32 sm:px-6 lg:px-8 lg:pt-40">
         <div className="inline-flex w-fit items-center gap-2 rounded-full border border-neutral-800 bg-black/40 px-3 py-1 text-xs text-neutral-300 shadow">
           <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-          Available for freelance work
+          Available for work
         </div>
 
         <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl">
-          Building delightful apps with clean code and immersive UIs
+          I build clean, immersive apps
         </h1>
 
-        <p className="max-w-2xl text-neutral-300">
-          I’m a full‑stack developer who crafts performant web experiences. From scalable APIs to 3D, motion, and elegant design systems.
+        <p className="max-w-xl text-neutral-300">
+          Full‑stack dev focused on performance, UX, and 3D.
         </p>
 
         <div className="flex flex-wrap items-center gap-3">
@@ -73,10 +73,10 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
-          <Stat title="Years Experience" value="5+" />
-          <Stat title="Projects Delivered" value="30+" />
-          <Stat title="Tech Stack" value="TS · React · Node · ThreeJS" />
+        <div className="mt-6 grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
+          <Stat title="Experience" value="5+" />
+          <Stat title="Projects" value="30+" />
+          <Stat title="Stack" value="TS · React · Node · ThreeJS" />
         </div>
       </div>
     </div>
